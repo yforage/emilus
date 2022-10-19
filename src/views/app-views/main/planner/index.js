@@ -67,7 +67,7 @@ const PlannerPage = () => {
             <Tabs className='col-6' defaultActiveKey='1' items={items} />
             <Space size="middle" wrap className='flex-grow-1 justify-content-center justify-content-lg-start justify-content-xl-start '>
               <Button type="primary" onClick={handleDownload}>Скачать планировку</Button>
-              <Upload accept='application/JSON' beforeUpload={handleUpload}>
+              <Upload accept='application/JSON' beforeUpload={handleUpload} maxCount={1}>
                 <Button onClick={handleUpload}>Загрузить из файла</Button>
               </Upload>
             </Space>
