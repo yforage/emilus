@@ -5,10 +5,13 @@ import ItemCard from './ItemCard';
 import Planner from './Planner';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { saveAsJSON } from './saveAsJson';
+import { TouchBackend } from 'react-dnd-touch-backend';
+import utils from 'utils';
 
 const PlannerPage = () => {
   const [addedImages, setAddedImages] = useState([]);
+
+  const isTouch = window.ontouchstart !== undefined;
 
   const handleAddImage = (image) => setAddedImages((prev) => ([...prev, { id: image, x: 0, y: 0 }]));
 
@@ -28,7 +31,7 @@ const PlannerPage = () => {
       </Space>
   }));
 
-  const handleDownload = () => saveAsJSON(addedImages, "plan");
+  const handleDownload = () => utils.saveAsJSON(addedImages, "plan");
 
   const handleUpload = (file) => {
     if (!file.uid) return;
@@ -42,6 +45,8 @@ const PlannerPage = () => {
 
     return false;
   };
+
+  console.log(isTouch);
 
   return (
     <Row gutter={[16, 16]}>
@@ -59,7 +64,7 @@ const PlannerPage = () => {
         </Row>
       </Col>
       <Col xs={24} sm={12} md={12} lg={12}>
-        <DndProvider backend={HTML5Backend}>
+        <DndProvider backend={isTouch ? TouchBackend : HTML5Backend}>
           <Planner images={addedImages} updateImage={setImageCoords} />
         </DndProvider>
       </Col>
