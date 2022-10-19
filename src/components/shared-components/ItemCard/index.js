@@ -12,10 +12,11 @@ const ItemCard = ({ img, title, onClick }) => {
     <Card
       loading={isLoading}
       hoverable
-      cover={<img onLoad={handleLoaded} src={img} alt="example" />} style={{ width: 120, textAlign: 'center' }}
+      cover={<img onLoad={handleLoaded} src={img} alt="example" />}
       onClick={onClick}
+      style={{ width: 140 }}
     >
-      <Meta description={title} />
+      <Meta description={title} className="text-center" />
     </Card>
   )
 }
