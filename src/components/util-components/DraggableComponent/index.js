@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDrag } from 'react-dnd';
 
-const DraggableComponent = ({ x, y, children, index }) => {
+const DraggableComponent = ({ type, x, y, children, index }) => {
   const [, drag] = useDrag({
-    item: ({ type: 'planner', index }),
+    item: ({ type, index }),
   });
 
   return (
