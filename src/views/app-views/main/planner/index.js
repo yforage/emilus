@@ -62,9 +62,16 @@ const PlannerPage = () => {
         </Row>
       </Col>
       <Col xs={24} sm={12} md={12} lg={12}>
-        <DndProvider backend={isTouch ? TouchBackend : HTML5Backend}>
-          <Planner images={addedImages} updateImage={setImageCoords} />
-        </DndProvider>
+        {isTouch && (
+          <DndProvider backend={TouchBackend}>
+            <Planner images={addedImages} updateImage={setImageCoords} />
+          </DndProvider>
+        )}
+        {!isTouch && (
+          <DndProvider backend={HTML5Backend}>
+            <Planner images={addedImages} updateImage={setImageCoords} />
+          </DndProvider>
+        )}
       </Col>
     </Row>
   )
