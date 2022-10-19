@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Row, Col, Tabs, Space, Button, Upload } from 'antd';
 import ItemCard from 'components/shared-components/ItemCard';
 import Planner from './Planner';
@@ -23,17 +23,27 @@ const PlannerPage = () => {
     });
   };
 
-  const items = tabs.map((tab, index) => ({
-    label: tab.title,
-    key: index,
-    children: (
-      <div style={{ overflowX: 'auto' }}>
-        <Space>
-          {tab.content.map(({ img, title }) => <ItemCard onClick={() => handleAddImage(img)} key={img} img={img} title={title} />)}
-        </Space>
-      </div>
-    )}
-  ));
+  const items = useMemo(() => tabs.map((tab, index) => {
+    console.log('items');
+    return ({
+      label: tab.title,
+      key: index,
+      children: (
+        <div style={{ overflowX: 'auto' }}>
+          <Space>
+            {tab.content.map(({ img, title }, index) => (
+              <ItemCard
+                onClick={() => handleAddImage(img)}
+                key={`${img}-${index}`}
+                img={img}
+                title={title} />)
+            )}
+          </Space>
+        </div>
+      )
+    }
+    );
+  }), []);
 
   const handleDownload = () => utils.saveAsJSON(addedImages, "plan");
 
