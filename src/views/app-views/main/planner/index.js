@@ -53,12 +53,12 @@ const PlannerPage = () => {
           <Tabs className='col-6' defaultActiveKey='1' items={items} />
         </Row>
         <Row gutter={16}>
-          <Space size="middle">
-            <Button type="primary" onClick={handleDownload}>Save Plan</Button>
-            <Upload accept='application/JSON' beforeUpload={handleUpload}>
-              <Button onClick={handleUpload}>Upload Plan</Button>
-            </Upload>
-          </Space>
+            <Space size="middle" wrap>
+              <Button type="primary" onClick={handleDownload}>Скачать планировку</Button>
+              <Upload accept='application/JSON' beforeUpload={handleUpload}>
+                <Button onClick={handleUpload}>Загрузить из файла</Button>
+              </Upload>
+            </Space>
         </Row>
       </Col>
       <Col xs={24} sm={12} md={12} lg={12}>
