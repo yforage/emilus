@@ -46,8 +46,6 @@ const PlannerPage = () => {
     return false;
   };
 
-  console.log(isTouch);
-
   return (
     <Row gutter={[16, 16]}>
       <Col xs={24} sm={12} md={12} lg={12}>
