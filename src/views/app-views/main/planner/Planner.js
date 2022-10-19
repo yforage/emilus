@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Card, Switch, Space } from 'antd';
-import DraggableComponent from './DraggableComponent';
+import DraggableComponent from 'components/util-components/DraggableComponent';
 import { useDrop } from 'react-dnd';
 
 const Planner = ({ images, updateImage }) => {
@@ -27,14 +27,14 @@ const Planner = ({ images, updateImage }) => {
         title="Карта заведения"
         extra={<Space>Сетка<Switch onChange={handleGrid} /></Space>}
         headStyle={{ color: '#FFFFFF' }}
-        bodyStyle={{ height: '500px' }}
+        bodyStyle={{ height: '500px', overflowX: 'scroll' }}
         style={{ backgroundColor: '#1c1c1c' }}
       >
         <div
           ref={ref}
           style={{
             position: 'relative',
-            width: '100%',
+            width: '700px',
             height: '100%',
             border: '1px solid #2c2c2c',
             ...(isGrid && {
@@ -45,8 +45,8 @@ const Planner = ({ images, updateImage }) => {
         >
           <div ref={drop} style={{ width: '100%', height: '100%' }}>
             {images.map(({ id, x, y }, index) =>
-              <DraggableComponent key={id} index={index} x={x} y={y}>
-                <img src={id} width={60} height={60} alt="" />
+              <DraggableComponent key={id} type="planner" index={index} x={x} y={y}>
+                <img src={id} width={100} height={100} alt="" />
               </DraggableComponent>
             )}
           </div>
