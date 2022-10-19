@@ -38,7 +38,8 @@ const List = () => {
       sorter: (a, b) => a.address.city.localeCompare(b.address.city),
       render: (_, record) => (
         <span>{record.address.city}</span>
-      )
+      ),
+      responsive: ['sm'],
     },
     {
       title: 'Компания',
@@ -47,7 +48,8 @@ const List = () => {
       sorter: (a, b) => a.company.name.localeCompare(b.company.name),
       render: (_, record) => (
         <span>{record.company.name}</span>
-      )
+      ),
+      responsive: ['sm'],
     },
   ]
 
@@ -56,7 +58,7 @@ const List = () => {
   }, []);
 
   return (
-    <Card>
+    <Card style={{ width: '100%' }}>
       <Table
         rowClassName="cursor-pointer"
         dataSource={list}
