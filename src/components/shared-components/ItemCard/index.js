@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card } from 'antd';
+import { Card, Tooltip } from 'antd';
 
 const { Meta } = Card;
 
@@ -9,15 +9,17 @@ const ItemCard = ({ img, title, onClick }) => {
   const handleLoaded = () => setIsLoading(false);
 
   return (
-    <Card
-      loading={isLoading}
-      hoverable
-      cover={<img onLoad={handleLoaded} src={img} alt="example" />}
-      onClick={onClick}
-      style={{ width: 140 }}
-    >
-      <Meta description={title} className="text-center" />
-    </Card>
+    <Tooltip title={title}>
+      <Card
+        loading={isLoading}
+        hoverable
+        cover={<img height={100} style={{ objectFit: 'contain' }} onLoad={handleLoaded} src={img} alt="example" />}
+        onClick={onClick}
+        style={{ width: 140, height: 200, overflow: 'hidden' }}
+      >
+        <Meta description={title} className="text-center" />
+      </Card>
+    </Tooltip>
   )
 }
 
